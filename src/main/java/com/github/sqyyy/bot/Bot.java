@@ -1,17 +1,20 @@
 package com.github.sqyyy.bot;
 
 import com.github.sqyyy.bot.action.Action;
+import com.github.sqyyy.bot.util.UuidPersistentDataType;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.EquipmentSlot;
-import org.joml.Vector3i;
+import org.bukkit.persistence.PersistentDataType;
 import org.joml.Vector3ic;
 
 import java.util.UUID;
 
 public class Bot {
+    private static final NamespacedKey UUID_KEY = new NamespacedKey("simple_autonomous_bot", "uuid");
     private final UUID uuid;
-    private final ArmorStand entity;
+    private ArmorStand entity;
     private Vector3ic position;
     private Action action;
 
@@ -22,17 +25,23 @@ public class Bot {
     }
 
     public static Bot spawn(Location location) {
-        var spawnedEntity = location.getWorld().spawn(location, ArmorStand.class, Bot::setupEntity);
-        return new Bot(UUID.randomUUID(), spawnedEntity, location.toVector().toVector3i());
+        var bot = new Bot(UUID.randomUUID(), null, location.toVector().toVector3i());
+        bot.entity = location.getWorld().spawn(location, ArmorStand.class, bot::setupEntity);
+        return bot;
     }
 
-    private static void setupEntity(ArmorStand entity) {
+    private void setupEntity(ArmorStand entity) {
         entity.setInvulnerable(true);
+        entity.setPersistent(true);
         entity.setGravity(false);
         entity.setSmall(true);
         entity.setBasePlate(false);
         entity.setArms(true);
         entity.setDisabledSlots(EquipmentSlot.values());
+        var data = entity.getPersistentDataContainer();
+        if (!data.has(UUID_KEY, UuidPersistentDataType.UUID)) {
+            data.set(UUID_KEY, UuidPersistentDataType.UUID, this.uuid);
+        }
     }
 
     public UUID uuid() {
