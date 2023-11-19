@@ -16,33 +16,62 @@
 |===
 |Name |Description
 
-|<<Move>> |Move in a given direction
-|<<Scan>> |Scan for a block in a given direction
+|<<fn_move>> |Move in a given direction
+|<<fn_scan>> |Scan for a block in a given direction
+|<<fn_break>> |Break the block in a given direction
+|<<fn_canBreak>> |Checks if the block in the given direction can be broken
 |===
 
-=== Move
+[#fn_move]
+=== move
 
 [cols="15%,85%"]
 |===
-|Signature |`move(direction): void`
+|Signature |`move(direction): bool`
 |Description |This moves the bot one block in the given direction.
-|Time usage |`10t`
+|Returns |Whether the move was successful or not.
+|Time usage |`15t`
 |===
 
-=== Scan
+[#fn_scan]
+=== scan
 
 [cols="15%,85%"]
 |===
 |Signature |`scan(direction): bool`
 |Description |This checks if a block is in the given direction.
-|Time usage |`1t`
+|Returns |Whether there is a block or not.
+|Time usage |`0t`
 |===
 
 [cols="15%,85%"]
 |===
 |Signature |`scan(direction, distance): bool`
 |Description |This checks if a block is in the given direction.
-|Time usage |`1t`
+|Returns |Whether there is a block or not.
+|Time usage |`0t`
+|===
+
+[#fn_break]
+=== break
+
+[cols="15%,85%"]
+|===
+|Signature |`break(direction): bool`
+|Description |This breaks the block in the given direction.
+|Returns |Whether the block could be broken or not.
+|Time usage |variable
+|===
+
+[#fn_canBreak]
+=== canBreak
+
+[cols="15%,85%"]
+|===
+|Signature |`canBreak(direction): bool`
+|Description |This checks if the block in a given direction can be broken.
+|Returns |Whether the block can be broken or not.
+|Time usage |`0t`
 |===
 
 == Bot data
