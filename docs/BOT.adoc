@@ -1,0 +1,55 @@
+= Bot
+:toc:
+
+== Units
+
+[cols="10%,10%,80%"]
+|===
+|Name |Symbol | Description
+
+|Tick |`t` |This unit represents in-game ticks. Each Tick is 1/20 of a second or 50 milliseconds.
+|===
+
+== Functions
+
+[cols="15%,85%"]
+|===
+|Name |Description
+
+|<<Move>> |Move in a given direction
+|<<Scan>> |Scan for a block in a given direction
+|===
+
+=== Move
+
+[cols="15%,85%"]
+|===
+|Signature |`move(direction): void`
+|Description |This moves the bot one block in the given direction.
+|Time usage |`10t`
+|===
+
+=== Scan
+
+[cols="15%,85%"]
+|===
+|Signature |`scan(direction): bool`
+|Description |This checks if a block is in the given direction.
+|Time usage |`1t`
+|===
+
+[cols="15%,85%"]
+|===
+|Signature |`scan(direction, distance): bool`
+|Description |This checks if a block is in the given direction.
+|Time usage |`1t`
+|===
+
+== Bot data
+
+[cols="15%,15%,70%"]
+|===
+|Name |Type |Description
+
+|uuid |`UUID` |The unique id of the bot.
+|===

@@ -1,0 +1,8 @@
+= Scripting language
+
+----
+if (scan(front)) {
+    breakBlock(front)
+}
+move(front)
+----
